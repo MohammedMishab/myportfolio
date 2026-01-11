@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio - Mohammed Mishab AK</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Raleway:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f5f7;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            font-family: 'Raleway', sans-serif;
+            font-size: 2.5rem;
+            color: #2A2D43;
+            margin-bottom: 40px;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .portfolio-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .portfolio-item img, .portfolio-item video {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            cursor: pointer;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .modal img, .modal video {
+            width: 100%;
+            height: auto;
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: #bbb;
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #6C63FF;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background-color: #554fd8;
+            transform: translateY(-2px);
+        }
+
+        .back-btn i {
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i>Back to Home
+        </a>
+        
+        <h1>My Work</h1>
+        
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <img src="./1 (1).jpg" alt="Portfolio Work 1" onclick="openModal('./1 (1).jpg', 'image')">
+            </div>
+            
+            <div class="portfolio-item">    
+                <img src="./1 (2).jpg" alt="Portfolio Work 2" onclick="openModal('./1 (2).jpg', 'image')">
+            </div>
+            
+            <div class="portfolio-item">
+                <video muted autoplay loop onclick="openModal('./3.mp4', 'video')">
+                    <source src="./3.mp4" type="video/mp4">
+                </video>
+            </div>
+            
+            <div class="portfolio-item">
+                <img src="./4.jpg" alt="Portfolio Work 4" onclick="openModal('./4.jpg', 'image')">
+            </div>
+            
+            <div class="portfolio-item">
+                <video muted autoplay loop onclick="openModal('./Comp 1_1.mp4', 'video')">
+                    <source src="./Comp 1_1.mp4" type="video/mp4">
+                </video>
+            </div>
+            
+            <div class="portfolio-item">
+                <img src="./5.jpg" alt="Portfolio Work 5" onclick="openModal('./5.jpg', 'image')">
+            </div>
+        </div>
+        
+        <!-- Modal -->
+        <div id="modal" class="modal">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div class="modal-content" id="modalContent"></div>
+        </div>
+    </div>
+    
+    <script>
+        function openModal(src, type) {
+            const modal = document.getElementById('modal');
+            const modalContent = document.getElementById('modalContent');
+            
+            if (type === 'image') {
+                modalContent.innerHTML = `<img src="${src}" alt="Full Size Image">`;
+            } else if (type === 'video') {
+                modalContent.innerHTML = `<video controls autoplay muted><source src="${src}" type="video/mp4"></video>`;
+            }
+            
+            modal.style.display = 'block';
+        }
+        
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
